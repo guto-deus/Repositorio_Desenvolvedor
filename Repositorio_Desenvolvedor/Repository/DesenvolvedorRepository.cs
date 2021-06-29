@@ -17,17 +17,18 @@ namespace Repositorio_Desenvolvedor.Repository
             string query = @"SELECT[Id]
                 ,[Nome]
                 ,[Email]
+                ,[Cpf]
                  FROM.[tb_Desenvolvedor]";
             SqlConnection conn = new SqlConnection(_connectionString);
             conn.Open();
             return conn.Query<Desenvolvedor>(query).ToList();
-
         }
         public Desenvolvedor Obter(int Id)
         {
             string query = @"SELECT[Id]
                 ,[Nome]
                 ,[Email]
+                ,[Cpf]
                  FROM.[tb_Desenvolvedor]
                     WHERE Id = @Id";
             SqlConnection conn = new SqlConnection(_connectionString);
@@ -38,24 +39,27 @@ namespace Repositorio_Desenvolvedor.Repository
         {
             string query = @"INSERT INTO [dbo].[tb_Desenvolvedor]
                ([Nome]
-               ,[Email])
+               ,[Email]
+               ,[Cpf])
                 VALUES
                (@Nome
-               ,@Email)";
+               ,@Email
+               ,@Cpf)";
             SqlConnection conn = new SqlConnection(_connectionString);
             conn.Open();
             conn.Execute(query, desenvolvedor);
         }
-        public Desenvolvedor ObterNome(string Nome)
+        public Desenvolvedor ObterCpf(string Cpf)
         {
             string query = @"SELECT[Id]
                 ,[Nome]
                 ,[Email]
+                ,[Cpf]
                  FROM.[tb_Desenvolvedor]
-                    WHERE Nome = @Nome";
+                    WHERE Cpf = @Cpf";
             SqlConnection conn = new SqlConnection(_connectionString);
             conn.Open();
-            return conn.QueryFirstOrDefault<Desenvolvedor>(query, new { Nome });
+            return conn.QueryFirstOrDefault<Desenvolvedor>(query, new { Cpf });
         }
         public void Atualizar(Desenvolvedor desenvolvedor)
         {

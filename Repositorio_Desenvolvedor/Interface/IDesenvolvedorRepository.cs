@@ -11,7 +11,7 @@ namespace Repositorio_Desenvolvedor.Interface
         List<Desenvolvedor> Listar();
         Desenvolvedor Obter(int Id);
         void Inserir(Desenvolvedor desenvolvedor);
-        Desenvolvedor ObterNome(string Nome);
+        Desenvolvedor ObterCpf(string Nome);
         void Atualizar(Desenvolvedor desenvolvedor);
         void Deletar(int Id);
     }

@@ -28,6 +28,7 @@ namespace Repositorio_Desenvolvedor.Service
             {
                 Id = p.Id,
                 Nome = p.Nome,
+                Cpf = p.Cpf,
                 Email = p.Email
             }));
 
@@ -41,6 +42,7 @@ namespace Repositorio_Desenvolvedor.Service
             {
                 Id = entity.Id,
                 Nome = entity.Nome,
+                Cpf = entity.Cpf,
                 Email = entity.Email
             };
         }
@@ -54,17 +56,18 @@ namespace Repositorio_Desenvolvedor.Service
             {
                 return new BaseResponse() { StatusCode = 400, Mensagem = "Erro: " + "E-mail precisa ser preenchido!" };
             }
-            var entity = _desenvolvedorRepository.ObterNome(desenvolvedorRequest.Nome);
+            var entity = _desenvolvedorRepository.ObterCpf(desenvolvedorRequest.Cpf);
 
             if (entity != null)
             {
-                return new BaseResponse() { StatusCode = 400, Mensagem = "Erro: " + "Já existe este nome na base de dados!" };
+                return new BaseResponse() { StatusCode = 400, Mensagem = "Erro: " + "Já existe este Cpf na base de dados!" };
             }
 
             Desenvolvedor dev = new Desenvolvedor();
             dev.Id = desenvolvedorRequest.Id;
             dev.Nome = desenvolvedorRequest.Nome;
             dev.Email = desenvolvedorRequest.Email;
+            dev.Cpf = desenvolvedorRequest.Cpf;
             _desenvolvedorRepository.Inserir(dev);
 
             return new BaseResponse() { StatusCode = 201, Mensagem = "Cliente Inserido com sucesso!" };
@@ -80,7 +83,7 @@ namespace Repositorio_Desenvolvedor.Service
             {
                 return new BaseResponse() { StatusCode = 400, Mensagem = "Erro: " + "E-mail precisa ser preenchido!" };
             }
-            var entity = _desenvolvedorRepository.ObterNome(desenvolvedorRequest.Nome);
+            var entity = _desenvolvedorRepository.ObterCpf(desenvolvedorRequest.Cpf);
 
             if (entity != null)
             {
@@ -94,12 +97,14 @@ namespace Repositorio_Desenvolvedor.Service
             dev.Id = desenvolvedorRequest.Id;
             dev.Nome = desenvolvedorRequest.Nome;
             dev.Email = desenvolvedorRequest.Email;
+            dev.Cpf = desenvolvedorRequest.Cpf;
             _desenvolvedorRepository.Atualizar(dev);
 
             return new BaseResponse() { StatusCode = 200, Mensagem = "Cliente Atualizado com sucesso!" };
         }
         public BaseResponse Deletar(int id)
         {
+
             if (id == 0)
             {
                 return new BaseResponse() { StatusCode = 400, Mensagem = "O Id precisa ser preenchido!" };

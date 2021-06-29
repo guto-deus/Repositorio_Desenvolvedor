@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Repositorio_Desenvolvedor.Entity
+{
+    public class Aplicacao
+    {
+        public int Id { get; set; }
+        public int DesenvolvedorId { get; set; }
+        public string Nome { get; set; }
+        public DateTime DataLancamento { get; set; }
+        public string Plataforma { get; set; }
+    }
+}
